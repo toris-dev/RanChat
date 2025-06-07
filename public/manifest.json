@@ -1,0 +1,27 @@
+{
+  "name": "BlockChat - 블록체인 랜덤채팅",
+  "short_name": "BlockChat",
+  "description": "블록체인 기반 익명 랜덤채팅 서비스",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1e1b4b",
+  "theme_color": "#8b5cf6",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["social", "communication"],
+  "lang": "ko",
+  "dir": "ltr"
+}
