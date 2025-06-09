@@ -13,15 +13,23 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@ranchat/shared": ["./packages/shared/src"],
+      "@ranchat/shared/*": ["./packages/shared/src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [],
+  "exclude": ["node_modules", "dist", ".next"],
+  "references": [
+    {
+      "path": "./apps/web"
+    },
+    {
+      "path": "./apps/admin"
+    },
+    {
+      "path": "./packages/shared"
+    }
+  ]
 }

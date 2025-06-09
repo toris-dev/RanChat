@@ -16,7 +16,7 @@
     "recharts": "^2.8.0",
     "date-fns": "^2.30.0",
     "lucide-react": "^0.292.0",
-    "@blockchat/shared": "workspace:*",
+    "@ranchat/shared": "workspace:*",
     "tailwindcss": "^3.3.0"
   },
   "devDependencies": {

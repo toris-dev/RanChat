@@ -1,5 +1,5 @@
 {
-  "name": "@blockchat/websocket",
+  "name": "@ranchat/websocket",
   "version": "1.0.0",
   "main": "src/server.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "jsonwebtoken": "^9.0.2",
     "uuid": "^9.0.1",
     "redis": "^4.6.0",
-    "@blockchat/shared": "workspace:*"
+    "@ranchat/shared": "workspace:*"
   },
   "devDependencies": {
     "@types/ws": "^8.5.8",

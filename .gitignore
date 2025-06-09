@@ -2,13 +2,15 @@
 
 # dependencies
 /node_modules
+**/node_modules
 
 # next.js
-/.next/
-/out/
+**/.next/
+**/out/
 
 # production
-/build
+**/build
+**/dist
 
 # debug
 npm-debug.log*
@@ -24,4 +26,14 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+**/next-env.d.ts
+
+# monorepo specific
+apps/**/node_modules
+packages/**/node_modules
+apps/**/.next
+packages/**/dist
+
+# IDE
+.vscode/settings.json
+.idea/
