@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "buildCommand": "pnpm turbo build",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./apps/web/ ./apps/admin/ ./packages/",
+  "outputDirectory": ".vercel/output",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "framework": "nextjs"
+}
