@@ -8,7 +8,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@ranchat/shared";
+} from "@ranchat/ui";
 import { MessageCircle, Shield, Users, Wallet, Zap } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

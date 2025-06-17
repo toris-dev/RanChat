@@ -1,6 +1,13 @@
 "use client";
 
 import {
+  AdminService,
+  AuthService,
+  type DashboardStats,
+  type Report,
+  type User,
+} from "@ranchat/shared";
+import {
   Badge,
   Button,
   Card,
@@ -8,15 +15,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@ranchat/shared";
-import {
-  Activity,
-  Flag,
-  MessageCircle,
-  Shield,
-  TrendingUp,
-  Users,
-} from "lucide-react";
+} from "@ranchat/ui";
+import { Activity, Flag, MessageCircle, Shield, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   Bar,
@@ -29,14 +29,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import {
-  AdminService,
-  AuthService,
-  type ChartData,
-  type DashboardStats,
-  type Report,
-  type User,
-} from "../lib/supabase-config";
 
 export default function AdminDashboard() {
   const [adminService] = useState(() => new AdminService());
@@ -52,7 +44,7 @@ export default function AdminDashboard() {
     blockedUsers: 0,
   });
 
-  const [chartData, setChartData] = useState<ChartData[]>([]);
+  const [chartData, setChartData] = useState<any[]>([]);
   const [reports, setReports] = useState<Report[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
@@ -93,7 +85,7 @@ export default function AdminDashboard() {
       });
 
       // 기본 차트 데이터
-      const defaultChartData: ChartData[] = [];
+      const defaultChartData = [];
       for (let i = 23; i >= 0; i--) {
         const time = new Date(Date.now() - i * 60 * 60 * 1000);
         defaultChartData.push({
@@ -234,7 +226,7 @@ export default function AdminDashboard() {
           <Card className="bg-gray-800 border-gray-700">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-gray-400">
-                총 신고
+                전체 신고
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -250,7 +242,7 @@ export default function AdminDashboard() {
           <Card className="bg-gray-800 border-gray-700">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-gray-400">
-                대기 신고
+                대기 중인 신고
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -284,80 +276,79 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card className="bg-gray-800 border-gray-700">
             <CardHeader>
-              <CardTitle className="text-white">24시간 사용자 활동</CardTitle>
-              <CardDescription className="text-gray-400">
-                시간별 온라인 사용자 수
+              <CardTitle className="text-gray-300">사용자 활동</CardTitle>
+              <CardDescription className="text-gray-500">
+                24시간 동안의 활성 사용자 수
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis dataKey="time" stroke="#9CA3AF" />
-                  <YAxis stroke="#9CA3AF" />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "#1F2937",
-                      border: "1px solid #374151",
-                      borderRadius: "8px",
-                    }}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="users"
-                    stroke="#8B5CF6"
-                    strokeWidth={2}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+              <div className="h-[300px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={chartData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis
+                      dataKey="time"
+                      stroke="#9CA3AF"
+                      fontSize={12}
+                      tickLine={false}
+                    />
+                    <YAxis stroke="#9CA3AF" fontSize={12} tickLine={false} />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "#1F2937",
+                        border: "none",
+                        borderRadius: "0.5rem",
+                      }}
+                      itemStyle={{ color: "#E5E7EB" }}
+                      labelStyle={{ color: "#9CA3AF" }}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="users"
+                      stroke="#60A5FA"
+                      strokeWidth={2}
+                      dot={false}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
             </CardContent>
           </Card>
 
           <Card className="bg-gray-800 border-gray-700">
             <CardHeader>
-              <CardTitle className="text-white">24시간 채팅 활동</CardTitle>
-              <CardDescription className="text-gray-400">
-                시간별 활성 채팅 수
+              <CardTitle className="text-gray-300">채팅 활동</CardTitle>
+              <CardDescription className="text-gray-500">
+                24시간 동안의 활성 채팅방 수
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis dataKey="time" stroke="#9CA3AF" />
-                  <YAxis stroke="#9CA3AF" />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "#1F2937",
-                      border: "1px solid #374151",
-                      borderRadius: "8px",
-                    }}
-                  />
-                  <Bar dataKey="chats" fill="#EC4899" />
-                </BarChart>
-              </ResponsiveContainer>
+              <div className="h-[300px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={chartData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis
+                      dataKey="time"
+                      stroke="#9CA3AF"
+                      fontSize={12}
+                      tickLine={false}
+                    />
+                    <YAxis stroke="#9CA3AF" fontSize={12} tickLine={false} />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "#1F2937",
+                        border: "none",
+                        borderRadius: "0.5rem",
+                      }}
+                      itemStyle={{ color: "#E5E7EB" }}
+                      labelStyle={{ color: "#9CA3AF" }}
+                    />
+                    <Bar dataKey="chats" fill="#8B5CF6" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
             </CardContent>
           </Card>
-        </div>
-
-        {/* 빠른 액션 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Button className="h-20 bg-blue-600 hover:bg-blue-700 flex flex-col items-center justify-center">
-            <Users className="w-6 h-6 mb-2" />
-            사용자 관리
-          </Button>
-          <Button className="h-20 bg-purple-600 hover:bg-purple-700 flex flex-col items-center justify-center">
-            <MessageCircle className="w-6 h-6 mb-2" />
-            채팅방 모니터링
-          </Button>
-          <Button className="h-20 bg-red-600 hover:bg-red-700 flex flex-col items-center justify-center">
-            <Flag className="w-6 h-6 mb-2" />
-            신고 관리
-          </Button>
-          <Button className="h-20 bg-green-600 hover:bg-green-700 flex flex-col items-center justify-center">
-            <TrendingUp className="w-6 h-6 mb-2" />
-            통계 보고서
-          </Button>
         </div>
       </div>
     </div>

@@ -1,24 +1,25 @@
 {
-  "name": "ranchat-monorepo",
-  "version": "0.1.0",
+  "name": "ranchat",
   "private": true,
   "scripts": {
-    "dev": "pnpm run --parallel dev",
-    "build": "pnpm run build --filter=@ranchat/shared && pnpm run build --filter=web",
-    "start": "pnpm run start --filter=web",
-    "lint": "pnpm run --parallel lint",
-    "clean": "pnpm run --parallel clean && rm -rf node_modules",
-    "install:all": "pnpm install"
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "clean": "turbo clean",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "generate-types": "sh scripts/generate-types.sh"
   },
   "devDependencies": {
-    "@types/node": "^22",
-    "typescript": "^5",
-    "prettier": "^3.0.0",
-    "eslint": "^8.0.0"
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.19",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "turbo": "^1.12.4",
+    "typescript": "^5.3.3"
   },
+  "packageManager": "pnpm@8.15.4",
   "engines": {
-    "node": ">=18.0.0",
-    "pnpm": ">=8.0.0"
-  },
-  "packageManager": "pnpm@8.15.0"
+    "node": ">=18.0.0"
+  }
 }

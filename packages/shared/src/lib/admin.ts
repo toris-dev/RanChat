@@ -1,7 +1,7 @@
 import { AuthService } from "./auth";
 import { ChatService } from "./chat";
 import type { Database } from "./database.types";
-import { getSupabase } from "./supabase";
+import { supabaseService } from "./supabase";
 
 export type Report = Database["public"]["Tables"]["reports"]["Row"];
 export type ReportInsert = Database["public"]["Tables"]["reports"]["Insert"];
@@ -22,7 +22,7 @@ export interface ChartData {
 }
 
 export class AdminService {
-  private supabase = getSupabase();
+  private supabase = supabaseService.getClient();
   private authService = new AuthService();
   private chatService = new ChatService();
 

@@ -1,16 +1,17 @@
 {
   "name": "@ranchat/websocket",
   "version": "1.0.0",
+  "deprecated": "This package has been migrated to Next.js API routes. Use the web app's API endpoints instead.",
   "main": "src/server.js",
   "scripts": {
-    "dev": "node src/server.js",
-    "start": "node src/server.js"
+    "dev": "echo 'DEPRECATED: Use Next.js API routes in the web app instead'",
+    "start": "echo 'DEPRECATED: Use Next.js API routes in the web app instead'"
   },
   "dependencies": {
     "ws": "^8.14.2",
     "jsonwebtoken": "^9.0.2",
     "uuid": "^9.0.1",
-    "redis": "^4.6.0",
+    "@supabase/supabase-js": "^2.39.0",
     "@ranchat/shared": "workspace:*"
   },
   "devDependencies": {

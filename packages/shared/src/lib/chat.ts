@@ -1,5 +1,5 @@
 import type { Database } from "./database.types";
-import { getSupabase } from "./supabase";
+import { supabaseService } from "./supabase";
 
 export type ChatRoom = Database["public"]["Tables"]["chat_rooms"]["Row"];
 export type ChatRoomInsert =
@@ -8,7 +8,7 @@ export type Message = Database["public"]["Tables"]["messages"]["Row"];
 export type MessageInsert = Database["public"]["Tables"]["messages"]["Insert"];
 
 export class ChatService {
-  private supabase = getSupabase();
+  private supabase = supabaseService.getClient();
 
   // 새 채팅방 생성
   async createChatRoom(user1Id: string, user2Id: string): Promise<ChatRoom> {

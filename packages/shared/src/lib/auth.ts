@@ -1,12 +1,12 @@
 import type { Database } from "./database.types";
-import { getSupabase } from "./supabase";
+import { supabaseService } from "./supabase";
 
 export type User = Database["public"]["Tables"]["users"]["Row"];
 export type UserInsert = Database["public"]["Tables"]["users"]["Insert"];
 export type UserUpdate = Database["public"]["Tables"]["users"]["Update"];
 
 export class AuthService {
-  private supabase = getSupabase();
+  private supabase = supabaseService.getClient();
 
   // 지갑 주소로 사용자 찾기 또는 생성
   async findOrCreateUser(walletAddress: string): Promise<User> {
