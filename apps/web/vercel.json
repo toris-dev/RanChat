@@ -1,6 +1,6 @@
 {
   "framework": "nextjs",
-  "buildCommand": "cd ../.. && pnpm turbo build --filter=@ranchat/web...",
-  "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm turbo build --filter=@ranchat/web",
+  "installCommand": "pnpm install --frozen-lockfile",
   "outputDirectory": ".next"
 }
